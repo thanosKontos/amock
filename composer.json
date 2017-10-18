@@ -1,0 +1,19 @@
+{
+    "name": "thanosKontos/amock",
+    "type": "library",
+    "require": {
+        "php": ">=7.1",
+        "phpunit/phpunit": "^6.0"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Amock\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Amock\\": "tests/"
+        }
+    }
+}
