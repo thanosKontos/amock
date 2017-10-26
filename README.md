@@ -6,30 +6,39 @@
 
 ## Instructions
 
-`composer require-dev thanosKontos/amock`
+`composer require --dev thanosKontos/amock`
 
 Add a directory to store your fixtures e.g. `tests/mock_fixtures` and as as many yaml files as you want.
 
 ```yaml
 # tests/mock_fixtures/repositories.yml
 
-Mockaccino\ToBeDeleted\SomeRepository:
-  mockRepositoryInsert:
+MyProject\Library\UserRepository:
+  mockUserRepository:
     disableConstructor: true
     mockMethods:
       insert: null
+      update: null
+MyProject\Library\ProductRepository:
+  mockProductRepository:
+    disableConstructor: true
+    mockMethods:
+      insert: null
+      update: null
 ```
 
 ```yaml
-# tests/mock_fixtures/other.yml
+# tests/mock_fixtures/gateways.yml
 
-Mockaccino\ToBeDeleted\HttpClient:
-  mockSuccessResponse:
+MyProject\Library\SomeApiGateway:
+  mockSomeApiSuccessResponse:
     disableConstructor: true
-    getResponse: 'Some successful mock reponse'
-  mockErrorResponse:
+    mockMethods:
+      getHelloReponse: '{"hello":"world"}'
+  mockSomeApi404Response:
     disableConstructor: true
-    getResponse: 'Some error mock reponse'
+    mockMethods:
+      getHelloReponse: '{"error": "404","message":"Not found"}'
 ```
 
 On your test bootstrap file
@@ -47,5 +56,9 @@ $amock = \Amock\Amock::create($config);
 Then you can use the configured mocks in your tests:
 
 ```php
-$stub = $amock->get('mockErrorResponse', $this);
+$stub = $amock->get('mockSomeApi404Response', $this);
 ```
+
+# Example
+
+There is an dummy project [here](https://github.com/thanosKontos/amock-example) that you can use as a reference.

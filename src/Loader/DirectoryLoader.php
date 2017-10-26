@@ -6,6 +6,7 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RegexIterator;
 use RecursiveRegexIterator;
+use Iterator;
 
 class DirectoryLoader implements Loader
 {
