@@ -10,7 +10,9 @@ class Amock
 
     private $parser;
 
-    public static function create(Configuration $config): Amock
+    private $mock;
+
+    public static function create(Configuration $config, TestCase $testCase): Amock
     {
         $sourceType = $config->getSourceType();
         $type = $config->getType();
@@ -31,41 +33,25 @@ class Amock
                 throw new Exception\InvalidParserException($type);
         }
 
-        return new Amock($loader, $parser);
+        return new Amock($loader, $parser, new Mock($testCase));
     }
 
-    public function __construct(Loader\Loader $loader, Parser\Parser $parser)
-    {
+    public function __construct(
+        Loader\Loader $loader,
+        Parser\Parser $parser,
+        Mock $mock
+    ) {
         $this->loader = $loader;
         $this->parser = $parser;
+        $this->mock = $mock;
     }
 
-    public function get(string $objectId, TestCase $testCase)
+    public function get(string $objectId)
     {
         $rawObject = $this->loader->get();
         $mockObjectArray = $this->parser->parse($rawObject);
+        $this->mock->setMockArray($mockObjectArray[$objectId]);
 
-        return $this->getMockObject($mockObjectArray[$objectId], $testCase);
-    }
-
-    private function getMockObject(array $mockArray, TestCase $testCase)
-    {
-        $className = key($mockArray);
-
-        if ($mockArray[$className]['disableConstructor'] == true) {
-            $stub = $testCase->getMockBuilder($className)
-                ->disableOriginalConstructor()
-                ->getMock();
-        } else {
-            $stub = $testCase->getMockBuilder($className)
-                ->getMock();
-        }
-
-        foreach ($mockArray[$className]['mockMethods'] as $methodName => $returnValue) {
-            $stub->method($methodName)
-                ->willReturn($returnValue);
-        }
-
-        return $stub;
+        return $this->mock->get();
     }
 }

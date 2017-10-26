@@ -17,28 +17,32 @@ MyProject\Library\UserRepository:
   mockUserRepository:
     disableConstructor: true
     mockMethods:
-      insert: null
-      update: null
+      insert: '@value:null'
+      update: '@value:null'
 MyProject\Library\ProductRepository:
   mockProductRepository:
     disableConstructor: true
     mockMethods:
-      insert: null
-      update: null
+      insert: '@value:null'
+      update: '@value:null'
 ```
 
 ```yaml
 # tests/mock_fixtures/gateways.yml
 
 MyProject\Library\SomeApiGateway:
-  mockSomeApiSuccessResponse:
+  mockSuccessResponse:
     disableConstructor: true
     mockMethods:
-      getHelloReponse: '{"hello":"world"}'
-  mockSomeApi404Response:
+      getHelloReponse: '@value:{"hello":"world"}'
+  mock404Response:
     disableConstructor: true
     mockMethods:
-      getHelloReponse: '{"error": "404","message":"Not found"}'
+      getHelloReponse: '@value:{"error": "404","message":"Not found"}'
+  mockExceptionResponse:
+    disableConstructor: true
+    mockMethods:
+      getHelloReponse: '@exception:\MyProject\Library\Exception\ApiException'
 ```
 
 On your test bootstrap file
@@ -50,13 +54,13 @@ $config = new \Amock\Configuration(
     '/path/to/mock_fixtures'
 );
 
-$amock = \Amock\Amock::create($config);
+$amock = \Amock\Amock::create($config, $testCase);
 ```
 
 Then you can use the configured mocks in your tests:
 
 ```php
-$stub = $amock->get('mockSomeApi404Response', $this);
+$stub = $amock->get('mock404Response');
 ```
 
 # Example
