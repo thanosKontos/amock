@@ -2,6 +2,8 @@
 
 [![Latest Stable Version](https://poser.pugx.org/thanos-kontos/amock/v/stable)](https://packagist.org/packages/thanos-kontos/amock)
 [![Build Status](https://travis-ci.org/thanosKontos/amock.svg?branch=master)](https://travis-ci.org/thanosKontos/amock)
+[![Maintainability](https://api.codeclimate.com/v1/badges/223b1d3dfc3607673750/maintainability)](https://codeclimate.com/github/thanosKontos/amock/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/223b1d3dfc3607673750/test_coverage)](https://codeclimate.com/github/thanosKontos/amock/test_coverage)
 
 ## Release notes
 

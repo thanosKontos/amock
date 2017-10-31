@@ -18,5 +18,8 @@
         "psr-4": {
             "Amock\\": "tests/"
         }
+    },
+    "require-dev": {
+        "codeclimate/php-test-reporter": "^0.4.4"
     }
 }
