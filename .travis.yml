@@ -1,0 +1,11 @@
+language: php
+
+php:
+  - '7.1'
+  - nightly
+
+install:
+  - composer install
+
+script: phpunit
+
