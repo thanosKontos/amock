@@ -1,6 +1,9 @@
 {
     "name": "thanos-kontos/amock",
+    "description": "PHPunit mock fixtures",
+    "keywords": ["fixture", "phpunit", "test", "mock"],
     "type": "library",
+    "license": "MIT",
     "require": {
         "php": ">=7.1",
         "phpunit/phpunit": "^6.0"

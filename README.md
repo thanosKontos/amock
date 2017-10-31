@@ -66,3 +66,8 @@ $stub = $amock->get('mock404Response');
 # Example
 
 There is an dummy project [here](https://github.com/thanosKontos/amock-example) that you can use as a reference.
+
+
+## License
+
+Amock is released under the [MIT License](https://opensource.org/licenses/MIT).
