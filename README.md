@@ -1,5 +1,8 @@
 # Amock - Organize your mock objects in configuration files (yaml/ini) for phpunit
 
+[![Latest Stable Version](https://poser.pugx.org/thanos-kontos/amock/v/stable)](https://packagist.org/packages/thanos-kontos/amock)
+[![Build Status](https://travis-ci.org/thanosKontos/amock.svg?branch=master)](https://travis-ci.org/thanosKontos/amock)
+
 ## Release notes
 
 **Under development. Do not use!**
