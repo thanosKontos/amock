@@ -11,7 +11,7 @@
 
 ## Instructions
 
-`composer require --dev thanosKontos/amock`
+`composer require --dev thanos-kontos/amock`
 
 Add a directory to store your fixtures e.g. `tests/mock_fixtures` and as as many yaml files as you want.
 
