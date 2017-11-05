@@ -4,7 +4,7 @@ namespace Amock\Parser;
 
 use PHPUnit\Framework\TestCase;
 
-class ConfigurationTest extends TestCase
+class YamlParserTest extends TestCase
 {
     public function testSuccessfulParsing()
     {
