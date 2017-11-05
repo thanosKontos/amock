@@ -17,7 +17,7 @@ class Mock
         $this->testCase = $testCase;
     }
 
-    public function setMockArray(array $mockArray)
+    public function setMockArray(array $mockArray): void
     {
         $this->mockArray = $mockArray;
         $this->className = $this->getMockClassName($mockArray);

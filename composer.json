@@ -6,7 +6,8 @@
     "license": "MIT",
     "require": {
         "php": ">=7.1",
-        "phpunit/phpunit": "^6.0"
+        "phpunit/phpunit": "^6.0",
+        "symfony/yaml": "^3.3"
     },
     "minimum-stability": "stable",
     "autoload": {
