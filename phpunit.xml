@@ -12,6 +12,9 @@
         <testsuite name="unit-tests">
             <directory>tests/Unit</directory>
         </testsuite>
+        <testsuite name="integration-tests">
+            <directory>tests/Integration</directory>
+        </testsuite>
     </testsuites>
 
     <filter>

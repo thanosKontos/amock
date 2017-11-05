@@ -1,0 +1,9 @@
+Fixtures\SampleClass:
+  sampleClassMockValue:
+    disableConstructor: true
+    mockMethods:
+      method1: '@value:Something'
+  sampleClassMockException:
+    disableConstructor: true
+    mockMethods:
+      method1: '@exception:\Fixtures\SampleException'

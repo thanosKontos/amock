@@ -17,7 +17,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Amock\\": "tests/"
+            "Amock\\": "tests/",
+            "Fixtures\\": "tests/fixtures/sampleClasses"
         }
     },
     "require-dev": {

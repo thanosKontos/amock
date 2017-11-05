@@ -9,7 +9,7 @@ class MockTest extends TestCase
     public function testMockToReturnValue()
     {
         $mockArray = [
-            'Amock\SampleClass' => [
+            'Fixtures\SampleClass' => [
                 'disableConstructor' => true,
                 'mockMethods' => [
                     'method1' => '@value:xyz'
@@ -25,15 +25,15 @@ class MockTest extends TestCase
     }
 
     /**
-     * @expectedException Amock\SampleException
+     * @expectedException Fixtures\SampleException
      */
     public function testMockToReturnException()
     {
         $mockArray = [
-            'Amock\SampleClass' => [
+            'Fixtures\SampleClass' => [
                 'disableConstructor' => true,
                 'mockMethods' => [
-                    'method1' => '@exception:\Amock\SampleException'
+                    'method1' => '@exception:\Fixtures\SampleException'
                 ]
             ]
         ];
@@ -44,16 +44,4 @@ class MockTest extends TestCase
         $mockClass = $mock->get();
         $mockClass->method1();
     }
-}
-
-class SampleClass
-{
-    public function method1()
-    {
-        return 'abc';
-    }
-}
-
-class SampleException extends \Exception
-{
 }
