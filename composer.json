@@ -5,9 +5,12 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "phpunit/phpunit": "^6.0",
         "symfony/yaml": "^2.7 || ^3.0 || ^4.0"
+    },
+    "require-dev": {
+        "codeclimate/php-test-reporter": "^0.4.4"
     },
     "minimum-stability": "stable",
     "autoload": {
@@ -20,8 +23,5 @@
             "Amock\\": "tests/",
             "Fixtures\\": "tests/fixtures/sampleClasses"
         }
-    },
-    "require-dev": {
-        "codeclimate/php-test-reporter": "^0.4.4"
     }
 }
