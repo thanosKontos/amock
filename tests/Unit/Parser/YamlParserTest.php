@@ -21,13 +21,13 @@ AmockExample\Library\SomeApiGateway:
 YAML;
 
         $yamlParser = new YamlParser();
-        $parsed = $yamlParser->parse($rawYaml);
+        $yamlParser->parse($rawYaml);
 
-        $this->assertArrayHasKey('mockSuccessResponse', $parsed);
-        $this->assertArrayHasKey('mockExceptionResponse', $parsed);
+        $this->assertArrayHasKey('mockSuccessResponse', $yamlParser);
+        $this->assertArrayHasKey('mockExceptionResponse', $yamlParser);
 
-        $this->assertArrayHasKey('AmockExample\Library\SomeApiGateway', $parsed['mockSuccessResponse']);
-        $this->assertTrue($parsed['mockSuccessResponse']['AmockExample\Library\SomeApiGateway']['disableConstructor']);
-        $this->assertNotEmpty($parsed['mockSuccessResponse']['AmockExample\Library\SomeApiGateway']['mockMethods']);
+        $this->assertArrayHasKey('AmockExample\Library\SomeApiGateway', $yamlParser['mockSuccessResponse']);
+        $this->assertTrue($yamlParser['mockSuccessResponse']['AmockExample\Library\SomeApiGateway']['disableConstructor']);
+        $this->assertNotEmpty($yamlParser['mockSuccessResponse']['AmockExample\Library\SomeApiGateway']['mockMethods']);
     }
 }

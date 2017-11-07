@@ -1,4 +1,4 @@
-# Amock - Organize your mock objects in configuration files (yaml/ini) for phpunit
+# Amock - Organize your mock objects in configuration files (yaml) for phpunit
 
 [![Latest Stable Version](https://poser.pugx.org/thanos-kontos/amock/v/stable)](https://packagist.org/packages/thanos-kontos/amock)
 [![Build Status](https://travis-ci.org/thanosKontos/amock.svg?branch=master)](https://travis-ci.org/thanosKontos/amock)
@@ -50,22 +50,24 @@ MyProject\Library\SomeApiGateway:
       getHelloReponse: '@exception:\MyProject\Library\Exception\ApiException'
 ```
 
-On your test bootstrap file
+On your test setUp method
 
 ```php
 $config = new \Amock\Configuration('yaml', 'dir', '/path/to/mock_fixtures');
-$amock = \Amock\Amock::create($config, $testCase);
+$this->amock = \Amock\Amock::create($config, $testCase);
 ```
+
+or
 
 ```php
 $config = new \Amock\Configuration('yaml', 'file', '/path/to/mock_fixtures/somefile.yml');
-$amock = \Amock\Amock::create($config, $testCase);
+$this->amock = \Amock\Amock::create($config, $testCase);
 ```
 
 Then you can use the configured mocks in your tests:
 
 ```php
-$stub = $amock->get('mock404Response');
+$stub = $this->amock->get('mock404Response');
 ```
 
 # Example

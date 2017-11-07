@@ -2,20 +2,20 @@
 
 namespace Amock\Parser;
 
+use ArrayAccess;
 use Symfony\Component\Yaml\Yaml;
 
-class YamlParser implements Parser
+class YamlParser implements Parser, ArrayAccess
 {
-    public function parse(string $rawYaml): array
+    private $parsed = [];
+
+    public function parse(string $rawYaml): void
     {
-        $reorderedObject = [];
         foreach ($this->yamlToArray($rawYaml) as $className => $yamlArray) {
             foreach ($yamlArray as $id => $mockArray) {
-                $reorderedObject[$id] = [$className => $mockArray];
+                $this->parsed[$id] = [$className => $mockArray];
             }
         }
-
-        return $reorderedObject;
     }
 
     protected function yamlToArray(string $rawYaml): array
@@ -25,5 +25,29 @@ class YamlParser implements Parser
         }
 
         return Yaml::parse($rawYaml);
+    }
+
+    public function offsetSet($offset, $value)
+    {
+        if (is_null($offset)) {
+            $this->parsed[] = $value;
+        } else {
+            $this->parsed[$offset] = $value;
+        }
+    }
+
+    public function offsetExists($offset)
+    {
+        return isset($this->parsed[$offset]);
+    }
+
+    public function offsetUnset($offset)
+    {
+        unset($this->parsed[$offset]);
+    }
+
+    public function offsetGet($offset)
+    {
+        return isset($this->parsed[$offset]) ? $this->parsed[$offset] : null;
     }
 }

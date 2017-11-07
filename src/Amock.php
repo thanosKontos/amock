@@ -36,9 +36,8 @@ class Amock
 
     public function get(string $objectId)
     {
-        $rawObject = $this->loader->get();
-        $mockObjectArray = $this->parser->parse($rawObject);
-        $this->mock->setMockArray($mockObjectArray[$objectId]);
+        $this->parser->parse($this->loader->get());
+        $this->mock->setMockArray($this->parser[$objectId]);
 
         return $this->mock->get();
     }

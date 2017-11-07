@@ -36,9 +36,10 @@ class AmockTest extends TestCase
                      ->getMock();
 
         $parserStub->method('parse')
-             ->willReturn([
-                 'Classname' => []
-             ]);
+             ->willReturn(null);
+
+        $parserStub->method('offsetGet')
+             ->willReturn([]);
 
         return $parserStub;
     }
@@ -50,7 +51,7 @@ class AmockTest extends TestCase
                      ->getMock();
 
         $mockStub->method('setMockArray')
-             ->willReturn(null);
+             ->willReturn([]);
 
         return $mockStub;
     }
