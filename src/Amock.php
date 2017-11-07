@@ -14,24 +14,12 @@ class Amock
 
     public static function create(Configuration $config, TestCase $testCase): Amock
     {
-        $sourceType = $config->getSourceType();
-        $type = $config->getType();
+        $loader = Loader\LoaderFactory::create(
+            $config->getSourceType(),
+            $config->getValue()
+        );
 
-        switch ($sourceType) {
-            case Configuration::SOURCE_TYPE_DIR:
-                $loader = new Loader\DirectoryLoader($config->getValue());
-                break;
-            default:
-                throw new Exception\InvalidLoaderException($sourceType);
-        }
-
-        switch ($type) {
-            case Configuration::TYPE_YAML:
-                $parser = new Parser\YamlParser();
-                break;
-            default:
-                throw new Exception\InvalidParserException($type);
-        }
+        $parser = Parser\ParserFactory::create($config->getType());
 
         return new Amock($loader, $parser, new Mock($testCase));
     }

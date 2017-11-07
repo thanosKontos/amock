@@ -53,12 +53,12 @@ MyProject\Library\SomeApiGateway:
 On your test bootstrap file
 
 ```php
-$config = new \Amock\Configuration(
-    \Amock\Configuration::TYPE_YAML,
-    \Amock\Configuration::SOURCE_TYPE_DIR,
-    '/path/to/mock_fixtures'
-);
+$config = new \Amock\Configuration('yaml', 'dir', '/path/to/mock_fixtures');
+$amock = \Amock\Amock::create($config, $testCase);
+```
 
+```php
+$config = new \Amock\Configuration('yaml', 'file', '/path/to/mock_fixtures/somefile.yml');
 $amock = \Amock\Amock::create($config, $testCase);
 ```
 
@@ -71,7 +71,6 @@ $stub = $amock->get('mock404Response');
 # Example
 
 There is an dummy project [here](https://github.com/thanosKontos/amock-example) that you can use as a reference.
-
 
 ## License
 

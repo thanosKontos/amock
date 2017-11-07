@@ -9,8 +9,8 @@ use Amock\Amock;
 class ExceptionTest extends TestCase
 {
     /**
-     * @expectedException Amock\Exception\InvalidParserException
-     * @expectedExceptionMessage Invalid parser provided: ini
+     * @expectedException Amock\Parser\Exception\InvalidParserException
+     * @expectedExceptionMessage Invalid parser type provided: ini
      */
     public function testShouldThrowParserException()
     {
@@ -19,8 +19,8 @@ class ExceptionTest extends TestCase
     }
 
     /**
-     * @expectedException Amock\Exception\InvalidLoaderException
-     * @expectedExceptionMessage Invalid loader provided: other
+     * @expectedException Amock\Loader\Exception\InvalidLoaderException
+     * @expectedExceptionMessage Invalid loader type provided: other
      */
     public function testShouldThrowLoaderException()
     {

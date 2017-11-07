@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class DirectoryLoaderTest extends TestCase
 {
-    public function testSuccessfulParsing()
+    public function testSuccessfulLoad()
     {
         $directoryLoader = new DirectoryLoader(__DIR__ . '/../../fixtures/sampleYamlDir');
 

@@ -21,7 +21,7 @@ class DirectoryLoader implements Loader
     {
         $content = '';
         foreach($this->getFilesIterator() as $file) {
-            $content .= file_get_contents(reset($file));
+            $content .= file_get_contents(reset($file)) . PHP_EOL;
         }
 
         return $content;
