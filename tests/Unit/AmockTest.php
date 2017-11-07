@@ -46,11 +46,11 @@ class AmockTest extends TestCase
 
     private function getMockStub()
     {
-        $mockStub = $this->getMockBuilder(Mock::class)
+        $mockStub = $this->getMockBuilder(StubConfiguration::class)
                      ->disableOriginalConstructor()
                      ->getMock();
 
-        $mockStub->method('setMockArray')
+        $mockStub->method('setStubConfigurationArray')
              ->willReturn([]);
 
         return $mockStub;

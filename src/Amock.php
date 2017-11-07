@@ -10,7 +10,7 @@ class Amock
 
     private $parser;
 
-    private $mock;
+    private $stubConfiguration;
 
     public static function create(Configuration $config, TestCase $testCase): Amock
     {
@@ -21,24 +21,24 @@ class Amock
 
         $parser = Parser\ParserFactory::create($config->getType());
 
-        return new Amock($loader, $parser, new Mock($testCase));
+        return new Amock($loader, $parser, new StubConfiguration($testCase));
     }
 
     public function __construct(
         Loader\Loader $loader,
         Parser\Parser $parser,
-        Mock $mock
+        StubConfiguration $stubConfiguration
     ) {
         $this->loader = $loader;
         $this->parser = $parser;
-        $this->mock = $mock;
+        $this->stubConfiguration = $stubConfiguration;
     }
 
     public function get(string $objectId)
     {
         $this->parser->parse($this->loader->get());
-        $this->mock->setMockArray($this->parser[$objectId]);
+        $this->stubConfiguration->setStubConfigurationArray($this->parser[$objectId]);
 
-        return $this->mock->get();
+        return $this->stubConfiguration->getStub();
     }
 }

@@ -7,3 +7,7 @@ Fixtures\SampleClass:
     disableConstructor: true
     mockMethods:
       method1: '@exception:\Fixtures\SampleException'
+      otherMethod:
+        - 'xyz'
+        - '{test: abc}'
+        - '123'

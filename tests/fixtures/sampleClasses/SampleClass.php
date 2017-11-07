@@ -8,4 +8,9 @@ class SampleClass
     {
         return 'abc';
     }
+
+    public function otherMethod()
+    {
+        return true;
+    }
 }

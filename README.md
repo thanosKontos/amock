@@ -1,4 +1,4 @@
-# Amock - Organize your mock objects in configuration files (yaml) for phpunit
+# Amock - Organize your stub objects in yaml
 
 [![Latest Stable Version](https://poser.pugx.org/thanos-kontos/amock/v/stable)](https://packagist.org/packages/thanos-kontos/amock)
 [![Build Status](https://travis-ci.org/thanosKontos/amock.svg?branch=master)](https://travis-ci.org/thanosKontos/amock)
@@ -8,6 +8,18 @@
 ## Release notes
 
 **Under development. Do not use!**
+
+## In a glance
+
+Quoting from phpunit:
+
+> Sometimes it is just plain hard to test the system under test (SUT) because it depends on other components that cannot be used in the test environment. This could be because they aren't available, they will not return the results needed for the test or because executing them would have undesirable side effects. In other cases, our test strategy requires us to have more control or visibility of the internal behavior of the SUT.
+
+> When we are writing a test in which we cannot (or chose not to) use a real depended-on component (DOC), we can replace it with a Test Double. The Test Double doesn't have to behave exactly like the real DOC; it merely has to provide the same API as the real one so that the SUT thinks it is the real one!
+
+It is almost impossible to write good tests without stubbing objects, because we often need to imitate writing to a database or calling an external service.
+
+*Amock* lets you create these stub objects in yaml instead of "polluting" your tests with irrelevant code.
 
 ## Instructions
 
@@ -44,6 +56,11 @@ MyProject\Library\SomeApiGateway:
     disableConstructor: true
     mockMethods:
       getHelloReponse: '@value:{"error": "404","message":"Not found"}'
+      sampleSetter: '@self'
+      otherMethod:
+        - 'xyz'
+        - '{test: abc}'
+        - '123'
   mockExceptionResponse:
     disableConstructor: true
     mockMethods:
