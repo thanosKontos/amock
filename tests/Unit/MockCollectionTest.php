@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class StubConfigurationTest extends TestCase
 {
-    public function testMockToReturnValue()
+    public function testMockToReturnSimpleValue()
     {
         $mockArray = [
             'Fixtures\SampleClass' => [
@@ -22,6 +22,24 @@ class StubConfigurationTest extends TestCase
 
         $mockClass = $mock->getStub();
         $this->assertEquals('xyz', $mockClass->method1());
+    }
+
+    public function testMockToReturnLiteral()
+    {
+        $mockArray = [
+            'Fixtures\SampleClass' => [
+                'disableConstructor' => true,
+                'mockMethods' => [
+                    'method1' => '@literal:["111" => "aaa", "222" => "bbb"]'
+                ]
+            ]
+        ];
+
+        $mock = new StubConfiguration($this);
+        $mock->setStubConfigurationArray($mockArray);
+
+        $mockClass = $mock->getStub();
+        $this->assertEquals(["111" => "aaa", "222" => "bbb"], $mockClass->method1());
     }
 
     /**

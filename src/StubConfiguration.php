@@ -26,14 +26,14 @@ class StubConfiguration
     public function getStub()
     {
         if (empty($this->stubConfiguration)) {
-            throw new \Exception('Stub not configured');
+            throw new Parser\Exception\ParseException();
         }
 
         $stub = $this->getInitialStub();
 
         foreach ($this->stubConfiguration[$this->className]['mockMethods'] as $methodName => $methodMockConfig) {
-            $mockMethod = new MockMethod($this->testCase, $stub, $methodName, $methodMockConfig);
-            $mockMethod->addMockMethodToStub();
+            (new MockMethod\Resolver($this->testCase, $stub, $methodName, $methodMockConfig))
+                ->resolveAndModifyStub();
         }
 
         return $stub;

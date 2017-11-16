@@ -7,7 +7,7 @@
 
 ## Release notes
 
-**Under development. Do not use!**
+**Still not 100% stable. Use with caution**
 
 ## In a glance
 
@@ -61,6 +61,7 @@ MyProject\Library\SomeApiGateway:
         - 'xyz'
         - '{test: abc}'
         - '123'
+      methodThatReturnsArray: '@literal:["111" => "aaa", "222" => "bbb"]'
   mockExceptionResponse:
     disableConstructor: true
     mockMethods:
