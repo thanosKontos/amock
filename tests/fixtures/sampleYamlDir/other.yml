@@ -2,7 +2,7 @@ Fixtures\SampleClass:
   sampleClassMockValue:
     disableConstructor: true
     mockMethods:
-      method1: '@value:Something'
+      method1: '@string:Something'
   sampleClassMockException:
     disableConstructor: true
     mockMethods:

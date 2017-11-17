@@ -6,13 +6,13 @@ use PHPUnit\Framework\TestCase;
 
 class StubConfigurationTest extends TestCase
 {
-    public function testMockToReturnSimpleValue()
+    public function testMockToReturnString()
     {
         $mockArray = [
             'Fixtures\SampleClass' => [
                 'disableConstructor' => true,
                 'mockMethods' => [
-                    'method1' => '@value:xyz'
+                    'method1' => '@string:{"111":"aaa","222":"bbb"}'
                 ]
             ]
         ];
@@ -21,16 +21,16 @@ class StubConfigurationTest extends TestCase
         $mock->setStubConfigurationArray($mockArray);
 
         $mockClass = $mock->getStub();
-        $this->assertEquals('xyz', $mockClass->method1());
+        $this->assertEquals('{"111":"aaa","222":"bbb"}', $mockClass->method1());
     }
 
-    public function testMockToReturnLiteral()
+    public function testMockToReturnArray()
     {
         $mockArray = [
             'Fixtures\SampleClass' => [
                 'disableConstructor' => true,
                 'mockMethods' => [
-                    'method1' => '@literal:["111" => "aaa", "222" => "bbb"]'
+                    'method1' => '@array:{"111":"aaa","222":"bbb"}'
                 ]
             ]
         ];
@@ -40,6 +40,42 @@ class StubConfigurationTest extends TestCase
 
         $mockClass = $mock->getStub();
         $this->assertEquals(["111" => "aaa", "222" => "bbb"], $mockClass->method1());
+    }
+
+    public function testMockToReturnNull()
+    {
+        $mockArray = [
+            'Fixtures\SampleClass' => [
+                'disableConstructor' => true,
+                'mockMethods' => [
+                    'method1' => '@null'
+                ]
+            ]
+        ];
+
+        $mock = new StubConfiguration($this);
+        $mock->setStubConfigurationArray($mockArray);
+
+        $mockClass = $mock->getStub();
+        $this->assertSame(null, $mockClass->method1());
+    }
+
+    public function testMockToReturnInteger()
+    {
+        $mockArray = [
+            'Fixtures\SampleClass' => [
+                'disableConstructor' => true,
+                'mockMethods' => [
+                    'method1' => '@integer:15'
+                ]
+            ]
+        ];
+
+        $mock = new StubConfiguration($this);
+        $mock->setStubConfigurationArray($mockArray);
+
+        $mockClass = $mock->getStub();
+        $this->assertSame(15, $mockClass->method1());
     }
 
     /**

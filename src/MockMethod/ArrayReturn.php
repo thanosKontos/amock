@@ -2,7 +2,7 @@
 
 namespace Amock\MockMethod;
 
-class ValueReturn extends Handler
+class ArrayReturn extends Handler
 {
     public function handle(): bool
     {
@@ -12,7 +12,7 @@ class ValueReturn extends Handler
 
         $this->initialStub
             ->method($this->methodName)
-            ->willReturn($this->returnValue());
+            ->willReturn($this->returnLiteral());
 
         return true;
     }
@@ -20,11 +20,11 @@ class ValueReturn extends Handler
     private function canHandle(): bool
     {
         return is_string($this->methodMockConfig)
-            && substr($this->methodMockConfig, 0, 7) === '@value:';
+            && substr($this->methodMockConfig, 0, 7) === '@array:';
     }
 
-    private function returnValue(): string
+    private function returnLiteral()
     {
-        return substr($this->methodMockConfig, 7);
+        return json_decode(substr($this->methodMockConfig, 7), true);
     }
 }

@@ -1,9 +1,8 @@
 # Amock - Organize your stub objects in yaml
 
 [![Latest Stable Version](https://poser.pugx.org/thanos-kontos/amock/v/stable)](https://packagist.org/packages/thanos-kontos/amock)
-[![Build Status](https://travis-ci.org/thanosKontos/amock.svg?branch=master)](https://travis-ci.org/thanosKontos/amock)
-[![Maintainability](https://api.codeclimate.com/v1/badges/223b1d3dfc3607673750/maintainability)](https://codeclimate.com/github/thanosKontos/amock/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/223b1d3dfc3607673750/test_coverage)](https://codeclimate.com/github/thanosKontos/amock/test_coverage)
+[![Build Status](https://scrutinizer-ci.com/g/thanosKontos/amock/badges/build.png?b=master)](https://scrutinizer-ci.com/g/thanosKontos/amock/build-status/master)
+[![Code Coverage](https://scrutinizer-ci.com/g/thanosKontos/amock/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/thanosKontos/amock/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thanosKontos/amock/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/thanosKontos/amock/?branch=master)
 
 ## Release notes
@@ -35,14 +34,14 @@ MyProject\Library\UserRepository:
   mockUserRepository:
     disableConstructor: true
     mockMethods:
-      insert: '@value:null'
-      update: '@value:null'
+      insert: '@null'
+      update: '@null'
 MyProject\Library\ProductRepository:
   mockProductRepository:
     disableConstructor: true
     mockMethods:
-      insert: '@value:null'
-      update: '@value:null'
+      insert: '@null'
+      update: '@null'
 ```
 
 ```yaml
@@ -52,17 +51,17 @@ MyProject\Library\SomeApiGateway:
   mockSuccessResponse:
     disableConstructor: true
     mockMethods:
-      getHelloReponse: '@value:{"hello":"world"}'
+      getHelloReponse: '@string:{"hello":"world"}'
   mock404Response:
     disableConstructor: true
     mockMethods:
-      getHelloReponse: '@value:{"error": "404","message":"Not found"}'
+      getHelloReponse: '@string:{"error": "404","message":"Not found"}'
       sampleSetter: '@self'
       otherMethod:
         - 'xyz'
         - '{test: abc}'
         - '123'
-      methodThatReturnsArray: '@literal:["111" => "aaa", "222" => "bbb"]'
+      methodThatReturnsArray: '@array:["111" => "aaa", "222" => "bbb"]'
   mockExceptionResponse:
     disableConstructor: true
     mockMethods:

@@ -2,11 +2,11 @@ AmockExample\Library\SomeApiGateway:
   mockSuccessResponse:
     disableConstructor: true
     mockMethods:
-      getHelloReponse: '@value:{"hello":"world"}'
+      getHelloReponse: '@string:{"hello":"world"}'
   mock404Response:
     disableConstructor: true
     mockMethods:
-      getHelloReponse: '@value:{"error": "404","message":"Not found"}'
+      getHelloReponse: '@string:{"error": "404","message":"Not found"}'
   mockExceptionResponse:
     disableConstructor: true
     mockMethods:

@@ -2,7 +2,7 @@
 
 namespace Amock\MockMethod;
 
-class LiteralReturn extends Handler
+class NullReturn extends Handler
 {
     public function handle(): bool
     {
@@ -12,7 +12,7 @@ class LiteralReturn extends Handler
 
         $this->initialStub
             ->method($this->methodName)
-            ->willReturn($this->returnLiteral());
+            ->willReturn(null);
 
         return true;
     }
@@ -20,13 +20,6 @@ class LiteralReturn extends Handler
     private function canHandle(): bool
     {
         return is_string($this->methodMockConfig)
-            && substr($this->methodMockConfig, 0, 9) === '@literal:';
-    }
-
-    private function returnLiteral()
-    {
-        eval('$literal = ' . substr($this->methodMockConfig, 9) . ';');
-
-        return $literal;
+            && substr($this->methodMockConfig, 0, 5) === '@null';
     }
 }

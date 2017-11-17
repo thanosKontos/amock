@@ -24,18 +24,22 @@ class Resolver
 
     public function resolveAndModifyStub()
     {
-        $valueReturn = new ValueReturn($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
-        $literalReturn = new LiteralReturn($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
+        $stringReturn = new StringReturn($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
+        $integerReturn = new IntegerReturn($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
+        $arrayReturn = new ArrayReturn($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
+        $nullReturn = new NullReturn($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
         $selfReturn = new SelfReturn($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
         $consecutiveCallsReturn = new ConsecutiveCallsReturn($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
         $exceptionThrow = new ExceptionThrow($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
     
-        $valueReturn->setSuccessor($literalReturn);
-        $literalReturn->setSuccessor($selfReturn);
-        $selfReturn->setSuccessor($consecutiveCallsReturn);
+        $stringReturn->setSuccessor($arrayReturn);
+        $arrayReturn->setSuccessor($nullReturn);
+        $nullReturn->setSuccessor($selfReturn);
+        $selfReturn->setSuccessor($integerReturn);
+        $integerReturn->setSuccessor($consecutiveCallsReturn);
         $consecutiveCallsReturn->setSuccessor($exceptionThrow);
 
-        return $valueReturn->process();
+        return $stringReturn->process();
     }
 }
 
