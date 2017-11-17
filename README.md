@@ -57,11 +57,14 @@ MyProject\Library\SomeApiGateway:
     mockMethods:
       getHelloReponse: '@string:{"error": "404","message":"Not found"}'
       sampleSetter: '@self'
-      otherMethod:
-        - 'xyz'
-        - '{test: abc}'
-        - '123'
-      methodThatReturnsArray: '@array:["111" => "aaa", "222" => "bbb"]'
+      methodThatReturnsDifferentValueOnConsecutiveCalls:
+        - '@string:{"hello":"world"}'
+        - '@integer:123'
+        - '@boolean:false'
+      methodThatReturnsArray: '@array:{"111":"aaa","222":"bbb"}'
+      methodThatReturnsBoolean: '@boolean:false'
+      methodThatReturnsInteger: '@integer:123'
+      methodThatReturnsNull: '@null'
   mockExceptionResponse:
     disableConstructor: true
     mockMethods:

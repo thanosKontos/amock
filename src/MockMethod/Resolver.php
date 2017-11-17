@@ -28,6 +28,7 @@ class Resolver
         $integerReturn = new IntegerReturn($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
         $arrayReturn = new ArrayReturn($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
         $nullReturn = new NullReturn($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
+        $booleanReturn = new BooleanReturn($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
         $selfReturn = new SelfReturn($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
         $consecutiveCallsReturn = new ConsecutiveCallsReturn($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
         $exceptionThrow = new ExceptionThrow($this->testCase, $this->initialStub, $this->methodName, $this->methodMockConfig);
@@ -35,7 +36,8 @@ class Resolver
         $stringReturn->setSuccessor($arrayReturn);
         $arrayReturn->setSuccessor($nullReturn);
         $nullReturn->setSuccessor($selfReturn);
-        $selfReturn->setSuccessor($integerReturn);
+        $selfReturn->setSuccessor($booleanReturn);
+        $booleanReturn->setSuccessor($integerReturn);
         $integerReturn->setSuccessor($consecutiveCallsReturn);
         $consecutiveCallsReturn->setSuccessor($exceptionThrow);
 

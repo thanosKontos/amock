@@ -8,6 +8,6 @@ Fixtures\SampleClass:
     mockMethods:
       method1: '@exception:\Fixtures\SampleException'
       otherMethod:
-        - 'xyz'
-        - '{test: abc}'
-        - '123'
+        - '@string:xyz'
+        - '@string:{test: abc}'
+        - '@integer:123'

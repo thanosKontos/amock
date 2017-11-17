@@ -21,7 +21,7 @@ class StubConfigurationTest extends TestCase
         $mock->setStubConfigurationArray($mockArray);
 
         $mockClass = $mock->getStub();
-        $this->assertEquals('{"111":"aaa","222":"bbb"}', $mockClass->method1());
+        $this->assertSame('{"111":"aaa","222":"bbb"}', $mockClass->method1());
     }
 
     public function testMockToReturnArray()
@@ -39,7 +39,7 @@ class StubConfigurationTest extends TestCase
         $mock->setStubConfigurationArray($mockArray);
 
         $mockClass = $mock->getStub();
-        $this->assertEquals(["111" => "aaa", "222" => "bbb"], $mockClass->method1());
+        $this->assertSame(["111" => "aaa", "222" => "bbb"], $mockClass->method1());
     }
 
     public function testMockToReturnNull()
@@ -76,6 +76,42 @@ class StubConfigurationTest extends TestCase
 
         $mockClass = $mock->getStub();
         $this->assertSame(15, $mockClass->method1());
+    }
+
+    public function testMockToReturnTrue()
+    {
+        $mockArray = [
+            'Fixtures\SampleClass' => [
+                'disableConstructor' => true,
+                'mockMethods' => [
+                    'method1' => '@boolean:true'
+                ]
+            ]
+        ];
+
+        $mock = new StubConfiguration($this);
+        $mock->setStubConfigurationArray($mockArray);
+
+        $mockClass = $mock->getStub();
+        $this->assertSame(true, $mockClass->method1());
+    }
+
+    public function testMockToReturnFalse()
+    {
+        $mockArray = [
+            'Fixtures\SampleClass' => [
+                'disableConstructor' => true,
+                'mockMethods' => [
+                    'method1' => '@boolean:false'
+                ]
+            ]
+        ];
+
+        $mock = new StubConfiguration($this);
+        $mock->setStubConfigurationArray($mockArray);
+
+        $mockClass = $mock->getStub();
+        $this->assertSame(false, $mockClass->method1());
     }
 
     /**
@@ -123,7 +159,7 @@ class StubConfigurationTest extends TestCase
             'Fixtures\SampleClass' => [
                 'disableConstructor' => true,
                 'mockMethods' => [
-                    'method1' => ['aaa', 2, true]
+                    'method1' => ['@string:aaa', '@integer:2', '@boolean:true']
                 ]
             ]
         ];
