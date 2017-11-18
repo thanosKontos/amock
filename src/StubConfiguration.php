@@ -41,7 +41,9 @@ class StubConfiguration
 
     private function getInitialStub()
     {
-        if ($this->stubConfiguration[$this->className]['disableConstructor'] == true) {
+        $disableConstructor = $this->stubConfiguration[$this->className]['disableConstructor'] ?? false;
+
+        if ($disableConstructor) {
             return $this->testCase->getMockBuilder($this->className)
                 ->disableOriginalConstructor()
                 ->getMock();

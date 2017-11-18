@@ -183,4 +183,21 @@ class StubConfigurationTest extends TestCase
 
         $mock->getStub();
     }
+
+    public function testMockWithOriginalConstructor()
+    {
+        $mockArray = [
+            'Fixtures\SampleClass' => [
+                'mockMethods' => [
+                    'sampleMethodReturningString' => '@string:abc'
+                ]
+            ]
+        ];
+
+        $mock = new StubConfiguration($this);
+        $mock->setStubConfigurationArray($mockArray);
+
+        $mockClass = $mock->getStub();
+        $this->assertSame('abc', $mockClass->sampleMethodReturningString());
+    }
 }

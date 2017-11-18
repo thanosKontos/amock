@@ -4,6 +4,11 @@ namespace Fixtures;
 
 class SampleClass
 {
+    public function __construct()
+    {
+        $bbb = 222;
+    }
+
     public function sampleMethodReturningString(): string
     {
         return 'abc';
