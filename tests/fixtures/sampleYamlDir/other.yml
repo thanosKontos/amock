@@ -2,12 +2,19 @@ Fixtures\SampleClass:
   sampleClassMockValue:
     disableConstructor: true
     mockMethods:
-      method1: '@string:Something'
+      sampleMethodReturningString: '@string:Something'
+      sampleMethodReturningInteger: '@string:321'
+      sampleMethodReturningArray: '@array:{"111":"aaa","222":"bbb"}'
+      sampleMethodReturningBoolean: '@boolean:false'
+      otherSampleMethod:
+        - '@string:bbb'
+        - '@string:{test: abc}'
+        - '@integer:123'
   sampleClassMockException:
     disableConstructor: true
     mockMethods:
-      method1: '@exception:\Fixtures\SampleException'
-      otherMethod:
+      sampleMethodReturningString: '@exception:\Fixtures\SampleException'
+      otherSampleMethod:
         - '@string:xyz'
         - '@string:{test: abc}'
         - '@integer:123'

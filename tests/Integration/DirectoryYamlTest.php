@@ -16,7 +16,7 @@ class DirectoryYamlTest extends TestCase
         $amockMock = $amock->get('sampleClassMockValue');
 
         $this->assertInstanceOf('Fixtures\SampleClass', $amockMock);
-        $this->assertEquals('Something', $amockMock->method1());
+        $this->assertEquals('Something', $amockMock->sampleMethodReturningString());
     }
 
     /**
@@ -30,6 +30,6 @@ class DirectoryYamlTest extends TestCase
         $amockMock = $amock->get('sampleClassMockException');
 
         $this->assertInstanceOf('Fixtures\SampleClass', $amockMock);
-        $amockMock->method1();
+        $amockMock->sampleMethodReturningString();
     }
 }

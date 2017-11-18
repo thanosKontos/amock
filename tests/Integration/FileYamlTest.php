@@ -16,7 +16,7 @@ class FileYamlTest extends TestCase
         $amockMock = $amock->get('sampleClassMockValue');
 
         $this->assertInstanceOf('Fixtures\SampleClass', $amockMock);
-        $this->assertEquals('Something', $amockMock->method1());
+        $this->assertEquals('Something', $amockMock->sampleMethodReturningString());
     }
 
     public function testSuccessfulWithExtension()
@@ -27,6 +27,6 @@ class FileYamlTest extends TestCase
         $amockMock = $amock->get('sampleClassMockValue');
 
         $this->assertInstanceOf('Fixtures\SampleClass', $amockMock);
-        $this->assertEquals('Something', $amockMock->method1());
+        $this->assertEquals('Something', $amockMock->sampleMethodReturningString());
     }
 }

@@ -12,7 +12,7 @@ class StubConfigurationTest extends TestCase
             'Fixtures\SampleClass' => [
                 'disableConstructor' => true,
                 'mockMethods' => [
-                    'method1' => '@string:{"111":"aaa","222":"bbb"}'
+                    'sampleMethodReturningString' => '@string:{"111":"aaa","222":"bbb"}'
                 ]
             ]
         ];
@@ -21,7 +21,7 @@ class StubConfigurationTest extends TestCase
         $mock->setStubConfigurationArray($mockArray);
 
         $mockClass = $mock->getStub();
-        $this->assertSame('{"111":"aaa","222":"bbb"}', $mockClass->method1());
+        $this->assertSame('{"111":"aaa","222":"bbb"}', $mockClass->sampleMethodReturningString());
     }
 
     public function testMockToReturnArray()
@@ -30,7 +30,7 @@ class StubConfigurationTest extends TestCase
             'Fixtures\SampleClass' => [
                 'disableConstructor' => true,
                 'mockMethods' => [
-                    'method1' => '@array:{"111":"aaa","222":"bbb"}'
+                    'sampleMethodReturningArray' => '@array:{"111":"aaa","222":"bbb"}'
                 ]
             ]
         ];
@@ -39,7 +39,7 @@ class StubConfigurationTest extends TestCase
         $mock->setStubConfigurationArray($mockArray);
 
         $mockClass = $mock->getStub();
-        $this->assertSame(["111" => "aaa", "222" => "bbb"], $mockClass->method1());
+        $this->assertSame(["111" => "aaa", "222" => "bbb"], $mockClass->sampleMethodReturningArray());
     }
 
     public function testMockToReturnNull()
@@ -48,7 +48,7 @@ class StubConfigurationTest extends TestCase
             'Fixtures\SampleClass' => [
                 'disableConstructor' => true,
                 'mockMethods' => [
-                    'method1' => '@null'
+                    'otherSampleMethod' => '@null'
                 ]
             ]
         ];
@@ -57,7 +57,7 @@ class StubConfigurationTest extends TestCase
         $mock->setStubConfigurationArray($mockArray);
 
         $mockClass = $mock->getStub();
-        $this->assertSame(null, $mockClass->method1());
+        $this->assertSame(null, $mockClass->otherSampleMethod());
     }
 
     public function testMockToReturnInteger()
@@ -66,7 +66,7 @@ class StubConfigurationTest extends TestCase
             'Fixtures\SampleClass' => [
                 'disableConstructor' => true,
                 'mockMethods' => [
-                    'method1' => '@integer:15'
+                    'sampleMethodReturningInteger' => '@integer:15'
                 ]
             ]
         ];
@@ -75,7 +75,7 @@ class StubConfigurationTest extends TestCase
         $mock->setStubConfigurationArray($mockArray);
 
         $mockClass = $mock->getStub();
-        $this->assertSame(15, $mockClass->method1());
+        $this->assertSame(15, $mockClass->sampleMethodReturningInteger());
     }
 
     public function testMockToReturnTrue()
@@ -84,7 +84,7 @@ class StubConfigurationTest extends TestCase
             'Fixtures\SampleClass' => [
                 'disableConstructor' => true,
                 'mockMethods' => [
-                    'method1' => '@boolean:true'
+                    'sampleMethodReturningBoolean' => '@boolean:true'
                 ]
             ]
         ];
@@ -93,7 +93,7 @@ class StubConfigurationTest extends TestCase
         $mock->setStubConfigurationArray($mockArray);
 
         $mockClass = $mock->getStub();
-        $this->assertSame(true, $mockClass->method1());
+        $this->assertSame(true, $mockClass->sampleMethodReturningBoolean());
     }
 
     public function testMockToReturnFalse()
@@ -102,7 +102,7 @@ class StubConfigurationTest extends TestCase
             'Fixtures\SampleClass' => [
                 'disableConstructor' => true,
                 'mockMethods' => [
-                    'method1' => '@boolean:false'
+                    'sampleMethodReturningBoolean' => '@boolean:false'
                 ]
             ]
         ];
@@ -111,7 +111,7 @@ class StubConfigurationTest extends TestCase
         $mock->setStubConfigurationArray($mockArray);
 
         $mockClass = $mock->getStub();
-        $this->assertSame(false, $mockClass->method1());
+        $this->assertSame(false, $mockClass->sampleMethodReturningBoolean());
     }
 
     /**
@@ -123,7 +123,7 @@ class StubConfigurationTest extends TestCase
             'Fixtures\SampleClass' => [
                 'disableConstructor' => true,
                 'mockMethods' => [
-                    'method1' => '@exception:\Fixtures\SampleException'
+                    'otherSampleMethod' => '@exception:\Fixtures\SampleException'
                 ]
             ]
         ];
@@ -132,7 +132,7 @@ class StubConfigurationTest extends TestCase
         $mock->setStubConfigurationArray($mockArray);
 
         $mockClass = $mock->getStub();
-        $mockClass->method1();
+        $mockClass->otherSampleMethod();
     }
 
     public function testMockToReturnSelf()
@@ -141,7 +141,7 @@ class StubConfigurationTest extends TestCase
             'Fixtures\SampleClass' => [
                 'disableConstructor' => true,
                 'mockMethods' => [
-                    'method1' => '@self'
+                    'otherSampleMethod' => '@self'
                 ]
             ]
         ];
@@ -150,7 +150,7 @@ class StubConfigurationTest extends TestCase
         $mock->setStubConfigurationArray($mockArray);
 
         $mockClass = $mock->getStub();
-        $this->assertSame($mockClass, $mockClass->method1());
+        $this->assertSame($mockClass, $mockClass->otherSampleMethod());
     }
 
     public function testMockToReturnConsecutiveValues()
@@ -159,7 +159,7 @@ class StubConfigurationTest extends TestCase
             'Fixtures\SampleClass' => [
                 'disableConstructor' => true,
                 'mockMethods' => [
-                    'method1' => ['@string:aaa', '@integer:2', '@boolean:true']
+                    'otherSampleMethod' => ['@string:aaa', '@integer:2', '@boolean:true']
                 ]
             ]
         ];
@@ -168,8 +168,19 @@ class StubConfigurationTest extends TestCase
         $mock->setStubConfigurationArray($mockArray);
 
         $mockClass = $mock->getStub();
-        $this->assertEquals('aaa', $mockClass->method1());
-        $this->assertEquals(2, $mockClass->method1());
-        $this->assertEquals(true, $mockClass->method1());
+        $this->assertEquals('aaa', $mockClass->otherSampleMethod());
+        $this->assertEquals(2, $mockClass->otherSampleMethod());
+        $this->assertEquals(true, $mockClass->otherSampleMethod());
+    }
+
+    /**
+     * @expectedException Amock\Parser\Exception\ParseException
+     */
+    public function testNoConfigurationGivesException()
+    {
+        $mock = new StubConfiguration($this);
+        $mock->setStubConfigurationArray([]);
+
+        $mock->getStub();
     }
 }
