@@ -9,7 +9,7 @@
 
 **Still not 100% stable. Use with caution**
 
-## In a glance
+## At a glance
 
 Quoting from phpunit:
 
